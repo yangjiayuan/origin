@@ -1,0 +1,40 @@
+USE [YUANYE]
+GO
+
+/****** Object:  View [dbo].[V_StorageOutFactory]    Script Date: 09/10/2015 16:13:46 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+Create View
+[dbo].[V_StorageOutFactory]
+as
+SELECT A.ID
+      ,A.Code
+      ,A.DocumentDate
+      ,A.Customer
+      ,A.IssueDate
+      ,A.PaymentTerm
+      ,A.ShippingType
+      ,A.Bill
+      ,A.POL
+      ,A.POD
+      ,A.DEST
+      ,A.Notes
+      ,A.Priceterms
+      ,isnull(B.Quantity,0) Quantity
+      ,isnull(B.QuantityActual,0) QuantityActual
+  FROM [YUANYE].[dbo].[D_StorageOut] A  
+Left Join
+(SELECT  
+      MainID,
+      Sum(Quantity) as Quantity,
+      Sum(QuantityActual) as QuantityActual
+  FROM [YUANYE].[dbo].[D_StorageOutFactory]
+  Group by MainID) B
+  on A.ID=B.MainID
+  Where A.CheckStatus=1
+GO

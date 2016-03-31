@@ -1,0 +1,9 @@
+Update [YUANYE].[dbo].[D_SalesOrder]
+set Shipped=1
+Where Shipped=0
+And ID IN 
+(SELECT ID 
+  FROM [YUANYE].[dbo].[V_SalesOrder_Purchase]
+  Where StorageOutQuantity=SOQuantity
+  And   SOQuantity=PurchaseQuantity
+  and StorageOutQuantity <>0)

@@ -1,0 +1,18 @@
+Create View [dbo].[V_ARConfirmBalance]
+as
+SELECT  [ID]
+      ,[Amount]
+      ,[LCAmount]
+      ,[Rate]
+      ,ISNULL(Items.ConfirmAmount,0) as ConfirmAmount
+      ,ISNULL(Items.ConfirmLCAmount,0) as ConfirmLCAmount
+      ,(ISNULL(Amount,0)-ISNULL(Items.ConfirmAmount,0)) as AmountGap
+      ,(ISNULL(LCAmount,0)-ISNULL(Items.ConfirmLCAmount,0)) as LCAmountGap
+  FROM [YUANYE].[dbo].[D_ARConfirm]
+  left join (SELECT  
+      [MainID]
+     ,sum(Amount) as ConfirmAmount
+      ,sum(LCAmount) as ConfirmLCAmount
+  FROM [YUANYE].[dbo].[D_ARConfirmItems] 
+  group by MainID ) as Items
+  on D_ARConfirm.ID= Items.MainID

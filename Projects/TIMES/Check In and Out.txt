@@ -1,0 +1,49 @@
+SELECT TOP 1000 [ID]
+      ,[MainID]
+      ,[LineNumber]
+      ,[SalesOrder]
+      ,[Material]
+      ,[Batch]
+      ,[Package]
+      ,[Measure]
+      ,[Quantity]
+      ,[Price]
+      ,[Amount]
+  FROM [SFNEW].[dbo].[D_StorageOutDetail]
+  WHERE MainID not in (select ID from D_StorageOut)
+
+
+SELECT [ID]
+      ,[StorageLocation]
+      ,[StorageType]
+      ,[DocumentDate]
+      ,[DocumentType]
+      ,[Document]
+      ,[Material]
+      ,[Batch]
+      ,[Package]
+      ,[Measure]
+      ,[Quantity]
+      ,[Price]
+      ,[Amount]
+  FROM [SFNEW].[dbo].[D_StorageData]
+  where DocumentType > 100
+  and Document not in (select ID from D_StorageOut)
+
+SELECT [ID]
+      ,[StorageLocation]
+      ,[StorageType]
+      ,[DocumentDate]
+      ,[DocumentType]
+      ,[Document]
+      ,[Material]
+      ,[Batch]
+      ,[Package]
+      ,[Measure]
+      ,[Quantity]
+      ,[Price]
+      ,[Amount]
+  FROM [SFNEW].[dbo].[D_StorageData]
+  where DocumentType < 100
+  and Document not in (select ID from D_StorageIn)
+  

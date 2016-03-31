@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EC9B0247-A35E-42D8-81A1-F9924A18470C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OH</RootNamespace>
+    <AssemblyName>OH</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\src\UI\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Infragistics2.Shared.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics2.Win.UltraWinEditors.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics2.Win.UltraWinGrid.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics2.Win.UltraWinPrintPreviewDialog.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics2.Win.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CGoodsIssue.cs" />
+    <Compile Include="CGoodsReceive.cs" />
+    <Compile Include="clsReportService.cs" />
+    <Compile Include="CSalesInvoiceItems.cs" />
+    <Compile Include="CStorageInForm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CStorageOutForm.cs" />
+    <Compile Include="CPurchaseOrder.cs" />
+    <Compile Include="clsAllocation.cs" />
+    <Compile Include="clsBuyOrderDetailForm.cs" />
+    <Compile Include="clsCheckStandard.cs" />
+    <Compile Include="clsCustomer.cs" />
+    <Compile Include="clsDataImport.cs" />
+    <Compile Include="clsDictionary.cs" />
+    <Compile Include="clsFreightPrice.cs" />
+    <Compile Include="clsMaterial.cs" />
+    <Compile Include="clsQuote.cs" />
+    <Compile Include="clsRptOutput2.cs" />
+    <Compile Include="clsSalesInvoice.cs" />
+    <Compile Include="clsSalesOrder.cs" />
+    <Compile Include="clsSendGoods.cs" />
+    <Compile Include="clsSetBillDate.cs" />
+    <Compile Include="clsOtherProduct.cs" />
+    <Compile Include="clsPackagePlan.cs" />
+    <Compile Include="clsPayInvoice.cs" />
+    <Compile Include="clsPeriodCarry.cs" />
+    <Compile Include="clsPrice.cs" />
+    <Compile Include="clsRptDepartmentWage.cs" />
+    <Compile Include="clsRptMaterialChek.cs" />
+    <Compile Include="clsRptOperationRate.cs" />
+    <Compile Include="clsRptOperatorReward.cs" />
+    <Compile Include="clsRptOperatorWage.cs" />
+    <Compile Include="clsRptOperatorWageList.cs" />
+    <Compile Include="clsRptOtherProduct.cs" />
+    <Compile Include="clsRptOutput.cs" />
+    <Compile Include="clsRptOutputDetail.cs" />
+    <Compile Include="clsRptQuality1.cs" />
+    <Compile Include="clsRptQuality2.cs" />
+    <Compile Include="clsRptReachRate.cs" />
+    <Compile Include="clsRptReachRateDetail.cs" />
+    <Compile Include="clsRptWageQuotiety.cs" />
+    <Compile Include="clsRptWarehouseBalance.cs" />
+    <Compile Include="clsRptWarehouseInOutDetail.cs" />
+    <Compile Include="clsRptWarehouseOut.cs" />
+    <Compile Include="clsRptWarehouseOutToMachine.cs" />
+    <Compile Include="clsStandardManHourDetailForm.cs" />
+    <Compile Include="clsDataList.cs" />
+    <Compile Include="clsUpdateAsignDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="clsUpdateAsignDate.Designer.cs">
+      <DependentUpon>clsUpdateAsignDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="clsWarehouseDetailForm.cs" />
+    <Compile Include="clsWorkOrderDetailForm.cs" />
+    <Compile Include="frmAllocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAllocation.designer.cs">
+      <DependentUpon>frmAllocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBuyOrderDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBuyOrderDetail.designer.cs">
+      <DependentUpon>frmBuyOrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCalculateMaterialCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCalculateMaterialCheck.designer.cs">
+      <DependentUpon>frmCalculateMaterialCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPayInvoiceWareHouseIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPayInvoiceWareHouseIn.designer.cs">
+      <DependentUpon>frmPayInvoiceWareHouseIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPeriodCarry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPeriodCarry.designer.cs">
+      <DependentUpon>frmPeriodCarry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectCheckStandard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectCheckStandard.designer.cs">
+      <DependentUpon>frmSelectCheckStandard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWarehouseMoveSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWarehouseMoveSelect.designer.cs">
+      <DependentUpon>frmWarehouseMoveSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWarehouseOutSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWarehouseOutSelect.designer.cs">
+      <DependentUpon>frmWarehouseOutSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IDataImport.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QuoteVersion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuoteVersion.Designer.cs">
+      <DependentUpon>QuoteVersion.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="clsUpdateAsignDate.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>clsUpdateAsignDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAllocation.resx">
+      <DependentUpon>frmAllocation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBuyOrderDetail.resx">
+      <DependentUpon>frmBuyOrderDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCalculateMaterialCheck.resx">
+      <DependentUpon>frmCalculateMaterialCheck.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPayInvoiceWareHouseIn.resx">
+      <DependentUpon>frmPayInvoiceWareHouseIn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPeriodCarry.resx">
+      <DependentUpon>frmPeriodCarry.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectCheckStandard.resx">
+      <DependentUpon>frmSelectCheckStandard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWarehouseMoveSelect.resx">
+      <DependentUpon>frmWarehouseMoveSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWarehouseOutSelect.resx">
+      <DependentUpon>frmWarehouseOutSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuoteVersion.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>QuoteVersion.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Base\Base.csproj">
+      <Project>{71C48BE8-D927-4F92-92DF-343CE2DB3D2D}</Project>
+      <Name>Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\UI\UI.csproj">
+      <Project>{517F058C-482F-41F3-9454-BF2375DC0D4F}</Project>
+      <Name>UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Set.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

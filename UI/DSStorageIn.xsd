@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSStorageIn" targetNamespace="http://tempuri.org/DSStorageIn.xsd" xmlns:mstns="http://tempuri.org/DSStorageIn.xsd" xmlns="http://tempuri.org/DSStorageIn.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ReportConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ReportConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.UI.Properties.Settings.GlobalReference.Default.ReportConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_StorageInTableAdapter" GeneratorDataComponentClassName="V_StorageInTableAdapter" Name="V_StorageIn" UserDataComponentName="V_StorageInTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ReportConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Quantity, Measure, Package, Batch, Material, Code, Notes, DocumentDate, BatchNo, MeasureName, PackageName, CompanyName, StorageLocationAddress, 
+                         StorageLocationTel, StorageLocationContact, StorageLocationName, StorageID, ID, MaterialName
+FROM            V_StorageIn</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Quantity" DataSetColumn="Quantity" />
+              <Mapping SourceColumn="Measure" DataSetColumn="Measure" />
+              <Mapping SourceColumn="Package" DataSetColumn="Package" />
+              <Mapping SourceColumn="Batch" DataSetColumn="Batch" />
+              <Mapping SourceColumn="Material" DataSetColumn="Material" />
+              <Mapping SourceColumn="Code" DataSetColumn="Code" />
+              <Mapping SourceColumn="Notes" DataSetColumn="Notes" />
+              <Mapping SourceColumn="DocumentDate" DataSetColumn="DocumentDate" />
+              <Mapping SourceColumn="MeasureName" DataSetColumn="MeasureName" />
+              <Mapping SourceColumn="PackageName" DataSetColumn="PackageName" />
+              <Mapping SourceColumn="CompanyName" DataSetColumn="CompanyName" />
+              <Mapping SourceColumn="StorageID" DataSetColumn="StorageID" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="MaterialName" DataSetColumn="MaterialName" />
+              <Mapping SourceColumn="BatchNo" DataSetColumn="BatchNo" />
+              <Mapping SourceColumn="StorageLocationAddress" DataSetColumn="StorageLocationAddress" />
+              <Mapping SourceColumn="StorageLocationTel" DataSetColumn="StorageLocationTel" />
+              <Mapping SourceColumn="StorageLocationContact" DataSetColumn="StorageLocationContact" />
+              <Mapping SourceColumn="StorageLocationName" DataSetColumn="StorageLocationName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSStorageIn" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DSStorageIn" msprop:Generator_UserDSName="DSStorageIn">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="V_StorageIn" msprop:Generator_TableClassName="V_StorageInDataTable" msprop:Generator_TableVarName="tableV_StorageIn" msprop:Generator_RowChangedName="V_StorageInRowChanged" msprop:Generator_TablePropName="V_StorageIn" msprop:Generator_RowDeletingName="V_StorageInRowDeleting" msprop:Generator_RowChangingName="V_StorageInRowChanging" msprop:Generator_RowEvHandlerName="V_StorageInRowChangeEventHandler" msprop:Generator_RowDeletedName="V_StorageInRowDeleted" msprop:Generator_RowClassName="V_StorageInRow" msprop:Generator_UserTableName="V_StorageIn" msprop:Generator_RowEvArgName="V_StorageInRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Quantity" msprop:Generator_ColumnVarNameInTable="columnQuantity" msprop:Generator_ColumnPropNameInRow="Quantity" msprop:Generator_ColumnPropNameInTable="QuantityColumn" msprop:Generator_UserColumnName="Quantity" type="xs:decimal" />
+              <xs:element name="Measure" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnMeasure" msprop:Generator_ColumnPropNameInRow="Measure" msprop:Generator_ColumnPropNameInTable="MeasureColumn" msprop:Generator_UserColumnName="Measure" type="xs:string" minOccurs="0" />
+              <xs:element name="Package" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnPackage" msprop:Generator_ColumnPropNameInRow="Package" msprop:Generator_ColumnPropNameInTable="PackageColumn" msprop:Generator_UserColumnName="Package" type="xs:string" minOccurs="0" />
+              <xs:element name="Batch" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnBatch" msprop:Generator_ColumnPropNameInRow="Batch" msprop:Generator_ColumnPropNameInTable="BatchColumn" msprop:Generator_UserColumnName="Batch" type="xs:string" minOccurs="0" />
+              <xs:element name="Material" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnMaterial" msprop:Generator_ColumnPropNameInRow="Material" msprop:Generator_ColumnPropNameInTable="MaterialColumn" msprop:Generator_UserColumnName="Material" type="xs:string" />
+              <xs:element name="Code" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_UserColumnName="Code">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Notes" msprop:Generator_ColumnVarNameInTable="columnNotes" msprop:Generator_ColumnPropNameInRow="Notes" msprop:Generator_ColumnPropNameInTable="NotesColumn" msprop:Generator_UserColumnName="Notes" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DocumentDate" msprop:Generator_ColumnVarNameInTable="columnDocumentDate" msprop:Generator_ColumnPropNameInRow="DocumentDate" msprop:Generator_ColumnPropNameInTable="DocumentDateColumn" msprop:Generator_UserColumnName="DocumentDate" type="xs:dateTime" />
+              <xs:element name="MeasureName" msprop:Generator_ColumnVarNameInTable="columnMeasureName" msprop:Generator_ColumnPropNameInRow="MeasureName" msprop:Generator_ColumnPropNameInTable="MeasureNameColumn" msprop:Generator_UserColumnName="MeasureName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PackageName" msprop:Generator_ColumnVarNameInTable="columnPackageName" msprop:Generator_ColumnPropNameInRow="PackageName" msprop:Generator_ColumnPropNameInTable="PackageNameColumn" msprop:Generator_UserColumnName="PackageName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CompanyName" msprop:Generator_ColumnVarNameInTable="columnCompanyName" msprop:Generator_ColumnPropNameInRow="CompanyName" msprop:Generator_ColumnPropNameInTable="CompanyNameColumn" msprop:Generator_UserColumnName="CompanyName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StorageID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnStorageID" msprop:Generator_ColumnPropNameInRow="StorageID" msprop:Generator_ColumnPropNameInTable="StorageIDColumn" msprop:Generator_UserColumnName="StorageID" type="xs:string" />
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="MaterialName" msprop:Generator_ColumnVarNameInTable="columnMaterialName" msprop:Generator_ColumnPropNameInRow="MaterialName" msprop:Generator_ColumnPropNameInTable="MaterialNameColumn" msprop:Generator_UserColumnName="MaterialName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BatchNo" msprop:Generator_ColumnVarNameInTable="columnBatchNo" msprop:Generator_ColumnPropNameInRow="BatchNo" msprop:Generator_ColumnPropNameInTable="BatchNoColumn" msprop:Generator_UserColumnName="BatchNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StorageLocationAddress" msprop:Generator_ColumnVarNameInTable="columnStorageLocationAddress" msprop:Generator_ColumnPropNameInRow="StorageLocationAddress" msprop:Generator_ColumnPropNameInTable="StorageLocationAddressColumn" msprop:Generator_UserColumnName="StorageLocationAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StorageLocationTel" msprop:Generator_ColumnVarNameInTable="columnStorageLocationTel" msprop:Generator_ColumnPropNameInRow="StorageLocationTel" msprop:Generator_ColumnPropNameInTable="StorageLocationTelColumn" msprop:Generator_UserColumnName="StorageLocationTel" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StorageLocationContact" msprop:Generator_ColumnVarNameInTable="columnStorageLocationContact" msprop:Generator_ColumnPropNameInRow="StorageLocationContact" msprop:Generator_ColumnPropNameInTable="StorageLocationContactColumn" msprop:Generator_UserColumnName="StorageLocationContact" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StorageLocationName" msprop:Generator_ColumnVarNameInTable="columnStorageLocationName" msprop:Generator_ColumnPropNameInRow="StorageLocationName" msprop:Generator_ColumnPropNameInTable="StorageLocationNameColumn" msprop:Generator_UserColumnName="StorageLocationName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,11 @@
+update [YUANYE].[dbo].[D_ARConfirm]
+set LCAmount=Amount * Rate 
+  Where rate <> 1
+
+  update s set s.Rate = h.rate
+  from D_ARConfirm h,D_ARConfirmItems s
+  where h.ID=s.MainID
+  and h.Rate>0
+  
+  update D_ARConfirmItems set LCAmount=Amount * Rate 
+  Where rate <> 1

@@ -1,0 +1,38 @@
+INSERT INTO [YUANYE].[dbo].[D_PaymentCheck]
+           ([TransactionDate]
+           ,[Businesstype]
+           ,[ReferenceNumber]
+           ,[Company]
+           ,[Payeraccountbank]
+           ,[DebitAccountNo]
+           ,[PayerName]
+           ,[Beneficiaryaccountbank]
+           ,[PayeeAccountNumber]
+           ,[PayeeName]
+           ,[TradeCurrency]
+           ,[TradeAmount]
+           ,[LCAmount]
+           ,[Rate]
+           ,[Notes]
+           ,[ConfirmStatus])
+SELECT
+      TransactionDate 
+      ,[Businesstype]
+      ,[Referencenumber]
+      ,'B3327DA1-08FB-4070-9D86-68DD8113D0C4' as Company
+       ,[Payeraccountbank]
+      ,[DebitAccountNo]
+      ,[PayerName]
+      ,[Beneficiaryaccountbank]
+      ,[PayeeAccountNumber]
+      ,[PayeeName]
+      ,[TradeCurrency]
+      ,Abs(TradeAmount) as TradeAmount
+      ,Abs(TradeAmount) as LCAmount
+      ,1 as Rate
+      , Remark AS Notes 
+      ,0 as Checkstatus
+  FROM [YUANYE].[dbo].[D_BankTransaction]
+  where transactiontype like 'Õ˘’À' 
+  and DebitAccountNo like '%515758221536%'
+  and Referencenumber not in (select Referencenumber from D_PaymentCheck)

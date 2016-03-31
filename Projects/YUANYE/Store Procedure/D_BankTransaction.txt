@@ -1,0 +1,20 @@
+
+INSERT INTO [YUANYE].[dbo].[D_BankTransaction]
+           ([TransactionDate]
+           ,[TransactionType]
+           ,[Businesstype]
+           ,[Referencenumber]
+           ,[Payeraccountbank]
+           ,[DebitAccountNo]
+           ,[PayerName]
+           ,[Beneficiaryaccountbank]
+           ,[PayeeAccountNumber]
+           ,[PayeeName]
+           ,[TradeCurrency]
+           ,[TradeAmount]
+           ,[Aftertransactionbalance]
+           ,[Purpose]
+           ,[Remark])
+SELECT T.K,T.A,T.B,T.R,T.D,T.E,T.F,T.H,T.I,T.J,T.M,T.N,T.O,T.Y,T.Z
+  FROM YUANYE.dbo.T_D_BankTransaction T
+  Where T.R Not in (Select Referencenumber from D_BankTransaction)

@@ -1,0 +1,20 @@
+UPDATE [YUANYE].[dbo].[D_StorageOut]
+   SET [DocumentStatus] =  2
+ WHERE ID in (SELECT   [ID]
+  FROM [YUANYE].[dbo].[V_SOAEx]
+  Where  InvoiceAmount > 0 and Balance <=100)
+  And DocumentStatus <> 2
+
+  UPDATE [YUANYE].[dbo].[D_StorageOut]
+   SET [DocumentStatus] =  0
+ WHERE ID in (SELECT   [ID]
+  FROM [YUANYE].[dbo].[V_SOAEx]
+  Where Balance >=100)
+  And DocumentStatus =2
+  
+    UPDATE [YUANYE].[dbo].[D_StorageOut]
+   SET [DocumentStatus] =  0
+ WHERE ID in (SELECT   [ID]
+  FROM [YUANYE].[dbo].[V_SOAEx]
+  Where InvoiceAmount =0 )
+  And DocumentStatus =2

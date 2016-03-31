@@ -1,0 +1,42 @@
+
+
+
+/****** 转出记录  ******/
+INSERT INTO [YUANYE].[dbo].[D_BankTransactionJS]
+           ([TransactionDate]
+           ,[TransactionType]
+           ,[Businesstype]
+           ,[DebitAccountNo]
+           ,[PayerName]
+           ,[PayeeAccountNumber]
+           ,[PayeeName]
+           ,[TradeCurrency]
+           ,[TradeAmount]
+           ,[Aftertransactionbalance])
+SELECT  [A],'往账' as TransactionType,I as Businesstype,
+        '6228460428002725171'  as [DebitAccountNo],
+        '南通远业进出口贸易有限公司' as [PayerName],
+      [G] as PayeeAccountNumber,[H] as PayeeName,
+      'CNY' as TradeCurrency, D as TradeAmount, E as Aftertransactionbalance
+  FROM [YUANYE].[dbo].[T_D_BankTransactionJS]
+  WHERE C=0;
+
+/****** 转入记录  ******/
+INSERT INTO [YUANYE].[dbo].[D_BankTransactionJS]
+           ([TransactionDate]
+           ,[TransactionType]
+           ,[Businesstype]
+           ,[DebitAccountNo]
+           ,[PayerName]
+           ,[PayeeAccountNumber]
+           ,[PayeeName]
+           ,[TradeCurrency]
+           ,[TradeAmount]
+           ,[Aftertransactionbalance])
+SELECT [A],'来账' as TransactionType,I as Businesstype,
+      [G] as [DebitAccountNo],[H] as [PayerName] ,
+      '6228460428002725171'  as PayeeAccountNumber,
+      '南通远业进出口贸易有限公司' as PayeeName,
+      'CNY' as TradeCurrency, C as TradeAmount, E as Aftertransactionbalance
+  FROM [YUANYE].[dbo].[T_D_BankTransactionJS]
+  WHERE D=0;

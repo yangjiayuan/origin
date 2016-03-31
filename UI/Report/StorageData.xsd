@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StorageData" targetNamespace="http://tempuri.org/StorageData.xsd" xmlns:mstns="http://tempuri.org/StorageData.xsd" xmlns="http://tempuri.org/StorageData.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ReportConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ReportConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.UI.Properties.Settings.GlobalReference.Default.ReportConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DTStorageDataTableAdapter" GeneratorDataComponentClassName="DTStorageDataTableAdapter" Name="DTStorageData" UserDataComponentName="DTStorageDataTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ReportConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        P_StorageLocation.Name AS StorageLocation, P_Material.Name AS Material, P_Package.Name AS Package, P_Measure.Name AS Measure, P_Batch.Code AS Batch, 
+                         D_StorageData.Amount, D_StorageData.Price, D_StorageData.Quantity, D_StorageData.DocumentDate, D_StorageData.DocumentType, D_StorageData.Document,
+                         D_StorageData.StorageType
+FROM            D_StorageData INNER JOIN
+                         P_Material ON D_StorageData.Material = P_Material.ID INNER JOIN
+                         P_Measure ON D_StorageData.Measure = P_Measure.ID LEFT OUTER JOIN
+                         P_Package ON D_StorageData.Package = P_Package.ID LEFT OUTER JOIN
+                         P_Batch ON D_StorageData.Batch = P_Batch.ID LEFT OUTER JOIN
+                         P_StorageLocation ON D_StorageData.StorageLocation = P_StorageLocation.ID
+WHERE        (D_StorageData.StorageType = 1)
+ORDER BY StorageLocation, Material</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="StorageLocation" DataSetColumn="StorageLocation" />
+              <Mapping SourceColumn="Material" DataSetColumn="Material" />
+              <Mapping SourceColumn="Package" DataSetColumn="Package" />
+              <Mapping SourceColumn="Measure" DataSetColumn="Measure" />
+              <Mapping SourceColumn="Batch" DataSetColumn="Batch" />
+              <Mapping SourceColumn="Amount" DataSetColumn="Amount" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="Quantity" DataSetColumn="Quantity" />
+              <Mapping SourceColumn="DocumentDate" DataSetColumn="DocumentDate" />
+              <Mapping SourceColumn="DocumentType" DataSetColumn="DocumentType" />
+              <Mapping SourceColumn="StorageType" DataSetColumn="StorageType" />
+              <Mapping SourceColumn="Document" DataSetColumn="Document" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DTStorageInTableAdapter" GeneratorDataComponentClassName="DTStorageInTableAdapter" Name="DTStorageIn" UserDataComponentName="DTStorageInTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ReportConnectionString (Settings)" DbObjectName="OHNEW.dbo.V_NormalStorageIn" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        V_NormalStorageIn.*
+FROM            V_NormalStorageIn</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="StorageLocation" DataSetColumn="StorageLocation" />
+              <Mapping SourceColumn="Material" DataSetColumn="Material" />
+              <Mapping SourceColumn="Package" DataSetColumn="Package" />
+              <Mapping SourceColumn="Batch" DataSetColumn="Batch" />
+              <Mapping SourceColumn="Measure" DataSetColumn="Measure" />
+              <Mapping SourceColumn="DocumentDate" DataSetColumn="DocumentDate" />
+              <Mapping SourceColumn="DocumentType" DataSetColumn="DocumentType" />
+              <Mapping SourceColumn="Amount" DataSetColumn="Amount" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="Quantity" DataSetColumn="Quantity" />
+              <Mapping SourceColumn="Vendor" DataSetColumn="Vendor" />
+              <Mapping SourceColumn="DocumentIn" DataSetColumn="DocumentIn" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StorageData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="StorageData" msprop:Generator_UserDSName="StorageData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DTStorageData" msprop:Generator_TableClassName="DTStorageDataDataTable" msprop:Generator_TableVarName="tableDTStorageData" msprop:Generator_TablePropName="DTStorageData" msprop:Generator_RowDeletingName="DTStorageDataRowDeleting" msprop:Generator_UserTableName="DTStorageData" msprop:Generator_RowChangingName="DTStorageDataRowChanging" msprop:Generator_RowEvHandlerName="DTStorageDataRowChangeEventHandler" msprop:Generator_RowDeletedName="DTStorageDataRowDeleted" msprop:Generator_RowEvArgName="DTStorageDataRowChangeEvent" msprop:Generator_RowChangedName="DTStorageDataRowChanged" msprop:Generator_RowClassName="DTStorageDataRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StorageLocation" msprop:Generator_ColumnVarNameInTable="columnStorageLocation" msprop:Generator_ColumnPropNameInRow="StorageLocation" msprop:Generator_ColumnPropNameInTable="StorageLocationColumn" msprop:Generator_UserColumnName="StorageLocation" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Material" msprop:Generator_ColumnVarNameInTable="columnMaterial" msprop:Generator_ColumnPropNameInRow="Material" msprop:Generator_ColumnPropNameInTable="MaterialColumn" msprop:Generator_UserColumnName="Material">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Package" msprop:Generator_ColumnVarNameInTable="columnPackage" msprop:Generator_ColumnPropNameInRow="Package" msprop:Generator_ColumnPropNameInTable="PackageColumn" msprop:Generator_UserColumnName="Package" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Measure" msprop:Generator_ColumnVarNameInTable="columnMeasure" msprop:Generator_ColumnPropNameInRow="Measure" msprop:Generator_ColumnPropNameInTable="MeasureColumn" msprop:Generator_UserColumnName="Measure">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Batch" msprop:Generator_ColumnVarNameInTable="columnBatch" msprop:Generator_ColumnPropNameInRow="Batch" msprop:Generator_ColumnPropNameInTable="BatchColumn" msprop:Generator_UserColumnName="Batch" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:decimal" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" />
+              <xs:element name="Quantity" msprop:Generator_ColumnVarNameInTable="columnQuantity" msprop:Generator_ColumnPropNameInRow="Quantity" msprop:Generator_ColumnPropNameInTable="QuantityColumn" msprop:Generator_UserColumnName="Quantity" type="xs:decimal" />
+              <xs:element name="DocumentDate" msprop:Generator_ColumnVarNameInTable="columnDocumentDate" msprop:Generator_ColumnPropNameInRow="DocumentDate" msprop:Generator_ColumnPropNameInTable="DocumentDateColumn" msprop:Generator_UserColumnName="DocumentDate" type="xs:dateTime" />
+              <xs:element name="DocumentType" msprop:Generator_ColumnVarNameInTable="columnDocumentType" msprop:Generator_ColumnPropNameInRow="DocumentType" msprop:Generator_ColumnPropNameInTable="DocumentTypeColumn" msprop:Generator_UserColumnName="DocumentType" type="xs:int" />
+              <xs:element name="StorageType" msprop:Generator_ColumnVarNameInTable="columnStorageType" msprop:Generator_ColumnPropNameInRow="StorageType" msprop:Generator_ColumnPropNameInTable="StorageTypeColumn" msprop:Generator_UserColumnName="StorageType" type="xs:int" />
+              <xs:element name="Document" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnDocument" msprop:Generator_ColumnPropNameInRow="Document" msprop:Generator_ColumnPropNameInTable="DocumentColumn" msprop:Generator_UserColumnName="Document" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DTStorageIn" msprop:Generator_TableClassName="DTStorageInDataTable" msprop:Generator_TableVarName="tableDTStorageIn" msprop:Generator_TablePropName="DTStorageIn" msprop:Generator_RowDeletingName="DTStorageInRowDeleting" msprop:Generator_UserTableName="DTStorageIn" msprop:Generator_RowChangingName="DTStorageInRowChanging" msprop:Generator_RowEvHandlerName="DTStorageInRowChangeEventHandler" msprop:Generator_RowDeletedName="DTStorageInRowDeleted" msprop:Generator_RowEvArgName="DTStorageInRowChangeEvent" msprop:Generator_RowChangedName="DTStorageInRowChanged" msprop:Generator_RowClassName="DTStorageInRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StorageLocation" msprop:Generator_ColumnVarNameInTable="columnStorageLocation" msprop:Generator_ColumnPropNameInRow="StorageLocation" msprop:Generator_ColumnPropNameInTable="StorageLocationColumn" msprop:Generator_UserColumnName="StorageLocation" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Material" msprop:Generator_ColumnVarNameInTable="columnMaterial" msprop:Generator_ColumnPropNameInRow="Material" msprop:Generator_ColumnPropNameInTable="MaterialColumn" msprop:Generator_UserColumnName="Material">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Package" msprop:Generator_ColumnVarNameInTable="columnPackage" msprop:Generator_ColumnPropNameInRow="Package" msprop:Generator_ColumnPropNameInTable="PackageColumn" msprop:Generator_UserColumnName="Package" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Batch" msprop:Generator_ColumnVarNameInTable="columnBatch" msprop:Generator_ColumnPropNameInRow="Batch" msprop:Generator_ColumnPropNameInTable="BatchColumn" msprop:Generator_UserColumnName="Batch" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Measure" msprop:Generator_ColumnVarNameInTable="columnMeasure" msprop:Generator_ColumnPropNameInRow="Measure" msprop:Generator_ColumnPropNameInTable="MeasureColumn" msprop:Generator_UserColumnName="Measure">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DocumentDate" msprop:Generator_ColumnVarNameInTable="columnDocumentDate" msprop:Generator_ColumnPropNameInRow="DocumentDate" msprop:Generator_ColumnPropNameInTable="DocumentDateColumn" msprop:Generator_UserColumnName="DocumentDate" type="xs:dateTime" />
+              <xs:element name="DocumentType" msprop:Generator_ColumnVarNameInTable="columnDocumentType" msprop:Generator_ColumnPropNameInRow="DocumentType" msprop:Generator_ColumnPropNameInTable="DocumentTypeColumn" msprop:Generator_UserColumnName="DocumentType" type="xs:int" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:decimal" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" />
+              <xs:element name="Quantity" msprop:Generator_ColumnVarNameInTable="columnQuantity" msprop:Generator_ColumnPropNameInRow="Quantity" msprop:Generator_ColumnPropNameInTable="QuantityColumn" msprop:Generator_UserColumnName="Quantity" type="xs:decimal" />
+              <xs:element name="Vendor" msprop:Generator_ColumnVarNameInTable="columnVendor" msprop:Generator_ColumnPropNameInRow="Vendor" msprop:Generator_ColumnPropNameInTable="VendorColumn" msprop:Generator_UserColumnName="Vendor">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DocumentIn" msprop:Generator_ColumnVarNameInTable="columnDocumentIn" msprop:Generator_ColumnPropNameInRow="DocumentIn" msprop:Generator_ColumnPropNameInTable="DocumentInColumn" msprop:Generator_UserColumnName="DocumentIn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

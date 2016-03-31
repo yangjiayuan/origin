@@ -1,0 +1,28 @@
+INSERT INTO [YUANYE].[dbo].[D_TaxRefund]
+           ([ID]
+           ,[ApplyMonth]
+           ,[DeclarationNO]
+           ,[SubNo]
+           ,[ShippingDate]
+           ,[MaterialNo]
+           ,[MaterialName]
+           ,[Unit]
+           ,[Quantity]
+           ,[FOBAmount]
+           ,[InvoiceAmount]
+           ,[RefundAmount])
+SELECT  
+      D AS ID
+      ,LEFT(B,6) AS ApplyMonth
+      ,LEFT(D,18) AS DeclarationNO
+      ,RIGHT(D,3) AS SubNo
+      ,F AS ShippingDate
+      ,H AS MaterialNo
+      ,I AS MaterialName
+      ,J AS Unit
+      ,[K] AS Quantity
+      ,[L] AS FOBAmount
+      ,[M] AS InvoiceAmount
+      ,[P] AS RefundAmount
+ FROM [YUANYE].[dbo].[T_D_TaxRefund]
+ WHERE D NOT IN (SELECT  [ID] FROM [YUANYE].[dbo].[D_TaxRefund])

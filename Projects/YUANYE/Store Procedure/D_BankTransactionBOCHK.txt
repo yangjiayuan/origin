@@ -1,0 +1,45 @@
+/****** 转出记录  ******/
+INSERT INTO [YUANYE].[dbo].[D_BankTransactionBOCHK]
+           ([TransactionDate]
+           ,[TransactionType]
+           ,[Businesstype]
+           ,[Referencenumber]
+           ,[DebitAccountNo]
+           ,[PayerName]
+           ,[PayeeAccountNumber]
+           ,[PayeeName]
+           ,[TradeCurrency]
+           ,[TradeAmount]
+           ,[Aftertransactionbalance]
+           ,[Remark])
+SELECT B as TransactionDate,D as TransactionType,C as Businesstype, H as Referencenumber,
+       '01288392204043' as DebitAccountNo, 'YUANYE GROUP (HK) LIMITED' as PayerName,
+       ' ' as PayeeAccountNumber ,' ' as PayeeName,
+       'USD' as TradeCurrency, E as TradeAmount, F as Aftertransactionbalance,
+       J as Remark
+  FROM [YUANYE].[dbo].[T_D_BankTransactionBOCHK]
+  WHERE D LIKE '%扣賬%'
+
+
+
+/****** 转入记录  ******/
+INSERT INTO [YUANYE].[dbo].[D_BankTransactionBOCHK]
+           ([TransactionDate]
+           ,[TransactionType]
+           ,[Businesstype]
+           ,[Referencenumber]
+           ,[DebitAccountNo]
+           ,[PayerName]
+           ,[PayeeAccountNumber]
+           ,[PayeeName]
+           ,[TradeCurrency]
+           ,[TradeAmount]
+           ,[Aftertransactionbalance]
+           ,[Remark])
+SELECT B as TransactionDate   ,D as TransactionType,C as Businesstype, H as Referencenumber,
+        ' ' as DebitAccountNo,  ' ' as PayerName,
+       '01288392204043' as PayeeAccountNumber ,'YUANYE GROUP (HK) LIMITED' as PayeeName,
+       'USD' as TradeCurrency, E as TradeAmount, F as Aftertransactionbalance,
+       J as Remark
+  FROM [YUANYE].[dbo].[T_D_BankTransactionBOCHK]
+  WHERE D LIKE '%入賬%'

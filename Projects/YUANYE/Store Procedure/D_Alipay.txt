@@ -1,0 +1,18 @@
+/****** 转出记录  ******/
+INSERT INTO [YUANYE].[dbo].[D_Alipay]
+           ([TransactionDate]
+           ,[TransactionType]
+           ,[Businesstype]
+           ,[DebitAccountNo]
+           ,[PayerName]
+           ,[PayeeAccountNumber]
+           ,[PayeeName]
+           ,[TradeCurrency]
+           ,[TradeAmount])
+SELECT D as TransactionDate ,K as TransactionType,I as Businesstype,
+        'yang.jiayuan@hotmail.com'  as [DebitAccountNo],
+        F as [PayerName],
+     ' ' as PayeeAccountNumber,[H] as PayeeName,
+      '人民币' as TradeCurrency, J as TradeAmount
+  FROM [YUANYE].[dbo].[T_D_Alipay]
+ 

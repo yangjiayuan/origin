@@ -1,0 +1,25 @@
+INSERT INTO [YUANYE].[dbo].[D_ARConfirm]
+           ([DocumentDate]
+           ,[Businesstype]
+           ,[ReferenceNumber]
+           ,[Company]
+           ,[PayerName]
+           ,[Bank]
+           ,[TradeCurrency]
+           ,[Amount]
+           ,[Notes]
+           ,[Checkstatus])
+SELECT
+      TransactionDate as DocumentDate
+      ,[Businesstype]
+      ,[Referencenumber]
+      ,'4C2E5A1C-25FE-4C83-939D-1087C9FEC960' as Company
+      ,[PayerName] 
+      ,'BANK OF CHINA (HK) LTD' AS BANK
+      ,[TradeCurrency]
+      ,[TradeAmount] AS Amount
+      , Remark AS Notes 
+      ,0 as Checkstatus
+  FROM [YUANYE].[dbo].[D_BankTransactionBOCHK]
+  where transactiontype like '%»ÎŸ~%' 
+  and Referencenumber not in (select Referencenumber from D_ARConfirm)

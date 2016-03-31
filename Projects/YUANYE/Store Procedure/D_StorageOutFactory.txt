@@ -1,0 +1,72 @@
+INSERT INTO [YUANYE].[dbo].[D_StorageOutFactory]
+           ([ID]
+           ,[MainID]
+           ,[LineNumber]
+           ,[SalesOrder]
+           ,[Style]
+           ,[Material]
+           ,[Color]
+           ,[Quantity]
+           ,[Measure])
+Select [ID]
+      ,[MainID]
+      ,[LineNumber]
+      ,[SalesOrder]
+      ,[Style]
+      ,[Material]
+      ,[Color]
+      ,[Quantity]
+      ,[Measure]
+      from D_StorageOutDetail
+where MainID NOT IN 
+(Select MainID from D_StorageOutFactory)
+
+
+INSERT INTO [YUANYE].[dbo].[D_StorageOutFactory]
+           ([ID]
+           ,[MainID]
+           ,[LineNumber]
+           ,[SalesOrder]
+           ,[Style]
+           ,[Material]
+           ,[Color]
+           ,[Quantity]
+           ,[Measure])
+Select [ID]
+      ,[MainID]
+      ,[LineNumber]
+      ,[SalesOrder]
+      ,[Style]
+      ,[Material]
+      ,[Color]
+      ,[Quantity]
+      ,[Measure]
+      from D_StorageOutDetail a
+where not exists (select * from D_StorageOutFactory  b where b.MainID=a.MainID and b.LineNumber =a.LineNumber)
+
+
+
+Select COUNT(*) 
+      from D_StorageOutDetail where MainID in (Select ID from D_StorageOut  Where CheckStatus=1)
+      
+Select COUNT(*)
+from D_StorageOutFactory
+
+Select MainID,COUNT(*) 
+      from D_StorageOutDetail group by MainID
+      
+Select MainID,COUNT(*)
+from D_StorageOutFactory Group by MainID
+
+
+Select [ID]
+      ,[MainID]
+      ,[LineNumber]
+      ,[SalesOrder]
+      ,[Style]
+      ,[Material]
+      ,[Color]
+      ,[Quantity]
+      ,[Measure]
+      from D_StorageOutFactory a
+where not exists (select * from D_StorageOutDetail  b where b.MainID=a.MainID and b.LineNumber =a.LineNumber)
