@@ -20,6 +20,7 @@ namespace Base
             for (int i = begin.Year; i < end.Year; i++)
                 _Periods.Add(i.ToString());
         }
+        private string confidential = "";
 
 
         /* 这个功能做也能够做，当是做起来太复杂了。暂时不处理，改为由具体SQL的地方来处理，可以视具体情况提供一些工具类。
@@ -39,7 +40,8 @@ namespace Base
          */
         public DBConnection(string ConnectionString)
         {
-            connString = ConnectionString;
+            confidential = "user id=sa;password=pwd4SERVER@SH;timeout=90";
+            connString = ConnectionString + confidential;
         }
         public string ConnectionString
         {

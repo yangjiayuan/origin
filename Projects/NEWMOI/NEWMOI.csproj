@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{ECA80FA2-785D-468D-9ED2-F2C40B1AF37F}</ProjectGuid>
+    <ProjectGuid>{03333B26-9679-4C46-BFD4-75F66FDB3626}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>YUANYE</RootNamespace>
-    <AssemblyName>YUANYE</AssemblyName>
+    <RootNamespace>NEWMOI</RootNamespace>
+    <AssemblyName>NEWMOI</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\src\UI\bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,28 +30,27 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Infragistics2.Shared.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Infragistics\NetAdvantage for .NET 2007 Volume 1 CLR 2.0\Windows Forms\Bin\Infragistics2.Shared.v7.1.dll</HintPath>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Infragistics2.Shared.v7.1\7.1.20071.40__7dd5c3163f2cd0cb\Infragistics2.Shared.v7.1.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics2.Win.UltraWinEditors.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Infragistics\NetAdvantage for .NET 2007 Volume 1 CLR 2.0\Windows Forms\Bin\Infragistics2.Win.UltraWinEditors.v7.1.dll</HintPath>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Infragistics2.Win.UltraWinEditors.v7.1\7.1.20071.40__7dd5c3163f2cd0cb\Infragistics2.Win.UltraWinEditors.v7.1.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics2.Win.UltraWinGrid.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Infragistics\NetAdvantage for .NET 2007 Volume 1 CLR 2.0\Windows Forms\Bin\Infragistics2.Win.UltraWinGrid.v7.1.dll</HintPath>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Infragistics2.Win.UltraWinGrid.v7.1\7.1.20071.40__7dd5c3163f2cd0cb\Infragistics2.Win.UltraWinGrid.v7.1.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics2.Win.UltraWinPrintPreviewDialog.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Infragistics\NetAdvantage for .NET 2007 Volume 1 CLR 2.0\Windows Forms\Bin\Infragistics2.Win.UltraWinPrintPreviewDialog.v7.1.dll</HintPath>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Infragistics2.Win.UltraWinPrintPreviewDialog.v7.1\7.1.20071.40__7dd5c3163f2cd0cb\Infragistics2.Win.UltraWinPrintPreviewDialog.v7.1.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics2.Win.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Infragistics\NetAdvantage for .NET 2007 Volume 1 CLR 2.0\Windows Forms\Bin\Infragistics2.Win.v7.1.dll</HintPath>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Infragistics2.Win.v7.1\7.1.20071.40__7dd5c3163f2cd0cb\Infragistics2.Win.v7.1.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,41 +58,13 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CBankStatement.cs" />
-    <Compile Include="CDeclaration.cs" />
-    <Compile Include="clsAccountReceivable.cs" />
-    <Compile Include="clsARConfirm.cs" />
-    <Compile Include="clsDataImport.cs" />
-    <Compile Include="clsDataList.cs" />
-    <Compile Include="clsDictionary.cs" />
-    <Compile Include="clsMaterial.cs" />
-    <Compile Include="clsPayInvoice.cs" />
-    <Compile Include="clsPayment.cs" />
-    <Compile Include="clsPaymentAnalysis.cs" />
-    <Compile Include="clsPurchaseInvoice.cs" />
-    <Compile Include="clsReportService.cs" />
-    <Compile Include="clsSalesInvoice.cs" />
-    <Compile Include="clsSalesOrder.cs" />
-    <Compile Include="clsSalesOrderExecute.cs" />
-    <Compile Include="clsSOA.cs" />
-    <Compile Include="CPaymentCheck.cs" />
-    <Compile Include="CPrint.cs" />
-    <Compile Include="CPurchaseOrder.cs" />
-    <Compile Include="CShipping.cs" />
-    <Compile Include="CStorageOut.cs" />
-    <Compile Include="CStorageOutActual.cs" />
-    <Compile Include="CStorageOutByVendor.cs" />
-    <Compile Include="IDataImport.cs" />
+    <Compile Include="CStorageInForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Base\Base.csproj">
@@ -104,12 +75,6 @@
       <Project>{517F058C-482F-41F3-9454-BF2375DC0D4F}</Project>
       <Name>UI</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

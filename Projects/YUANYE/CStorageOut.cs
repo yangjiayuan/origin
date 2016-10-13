@@ -246,7 +246,7 @@ namespace YUANYE
                         CTN = (decimal)e.Cell.Value;
                         e.Cell.Row.Cells["NW"].Value = Math.Round(CTN * 6, 0);
                         e.Cell.Row.Cells["GW"].Value = Math.Round(CTN * 7, 0);
-                        e.Cell.Row.Cells["CBM"].Value = Math.Round((CTN * 43)/1000, 3);
+                        e.Cell.Row.Cells["CBM"].Value = Math.Round((CTN * 53)/1000, 3);
                     }
 
                     break;
@@ -338,6 +338,7 @@ namespace YUANYE
                     newDR["MaterialCode"] = drItems["MaterialCode"];
                     newDR["EComposition"] = drItems["EComposition"];
                     newDR["Color"] = drItems["Colour"];
+                    newDR["ColourNo"] = drItems["ColourNo"];
                     newDR["Measure"] = drItems["Measure"];
                     newDR["MeasureName"] = drItems["MeasureName"];
                     newDR["Quantity"] = drItems["Quantity"];

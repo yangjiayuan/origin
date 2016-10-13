@@ -10,8 +10,6 @@ using System.Collections;
 
 namespace YUANYE
 {
-    //public enum enuDocumentOut : int { SalesOut=101,VendorConsignOut=102,CustomerConsignOut=103,CustomerConsignSales=104,TransferOut=105 }
-    //public enum enuStorageType : int { Normal = 1, VendorConsign = 2, CustomerConsign = 3 };
 
     public class clsPurchaseInvoice : ToolDetailForm
     {
@@ -27,6 +25,7 @@ namespace YUANYE
         private bool _AllowInsertRowInGrid;
         private bool _AllowInsertRowInToolBar;
 
+      
         public override bool AllowInsertRowInGrid(string TableName)
         {
             return _AllowInsertRowInGrid;
@@ -77,6 +76,19 @@ namespace YUANYE
             base.InsertToolStrip(toolStrip, insertType);
             int i = toolStrip.Items.Count;
 
+            i = i - 3;
+            toolAddNewItem = new ToolStripButton();
+            toolAddNewItem.Font = new System.Drawing.Font("SimSun", 10.5F);
+            toolAddNewItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolAddNewItem.Name = "toolAddNewItem";
+            toolAddNewItem.Size = new System.Drawing.Size(39, 34);
+            toolAddNewItem.Text = "装运单";
+            toolAddNewItem.Image = UI.clsResources.Query;
+            toolAddNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            toolAddNewItem.Click += new EventHandler(toolAddNewItem_Click);
+            toolStrip.Items.Insert(i, toolAddNewItem);
+
+
              i = i - 2;
             toolPreview = new ToolStripButton();
             toolPreview.Font = new System.Drawing.Font("SimSun", 10.5F);
@@ -112,6 +124,72 @@ namespace YUANYE
             PrintNew();
         }
 
+        private void toolAddNewItem_Click(object sender, EventArgs e)
+        {
+            //选择实际装箱单
+
+            if ((this._DetailForm.MainDataSet.Tables["D_PurchaseInvoice"].Rows[0]["Customer"] == DBNull.Value) || (this._DetailForm.MainDataSet.Tables["D_PurchaseInvoice"].Rows[0]["Vendor"] == DBNull.Value))
+
+            {
+                Msg.Information("请首先选择开票的供应商名称以及发货的客户名称后再进行此操作！");
+
+            }
+            else
+            {
+                Guid CustomerID = (Guid)this._DetailForm.MainDataSet.Tables["D_PurchaseInvoice"].Rows[0]["Customer"];
+                Guid VendorID = (Guid)this._DetailForm.MainDataSet.Tables["D_PurchaseInvoice"].Rows[0]["Vendor"];
+                GetShippingData(CustomerID,VendorID);
+            }
+
+            //return this._DetailForm.MainDataSet;      
+        }
+
+        private void GetShippingData (Guid CustomerID,Guid VendorID)
+        {
+            string FilterCondition;
+            string Code;
+
+            Code = "";
+            FilterCondition = string.Format("V_PurchaseInvoice.QuantityActual>0 and V_PurchaseInvoice.Vendor={0} and V_PurchaseInvoice.Customer='{1}'", VendorID,CustomerID);
+
+
+            frmBrowser frm = new frmBrowser(CSystem.Sys.Svr.LDI.GetFields("V_PurchaseInvoice"), null, FilterCondition, enuShowStatus.None);
+
+            DataRow dr = frm.ShowSelect("Code", Code , null);
+
+            if (dr != null)
+            {
+
+                COMFields FieldsDetail = CSystem.Sys.Svr.LDI.GetFields("D_SalesOrderItem");
+
+                string SQLDetail = FieldsDetail.QuerySQLWithClause(" MainID = '" + dr["ID"] + "'");
+
+                DataSet dsShippingItems = CSystem.Sys.Svr.cntMain.Select(SQLDetail, "D_SalesOrderItem");
+
+                foreach (DataRow drItems in dsShippingItems.Tables["D_SalesOrderItem"].Rows)
+                {
+                    DataRow newDR = this._DetailForm.MainDataSet.Tables["D_StorageOutDetail"].NewRow();
+                    newDR["SalesOrder"] = dr["ID"];
+                    newDR["SONumber"] = dr["Code"];
+                    newDR["CPONumber"] = dr["CPONumber"];
+                    newDR["Style"] = drItems["Style"];
+                    newDR["Destination"] = drItems["Destination"];
+                    newDR["Material"] = drItems["Material"];
+                    newDR["MaterialName"] = drItems["MaterialName"];
+                    newDR["MaterialCode"] = drItems["MaterialCode"];
+                    newDR["EComposition"] = drItems["EComposition"];
+                    newDR["Color"] = drItems["Colour"];
+                    newDR["ColourNo"] = drItems["ColourNo"];
+                    newDR["Measure"] = drItems["Measure"];
+                    newDR["MeasureName"] = drItems["MeasureName"];
+                    newDR["Quantity"] = drItems["Quantity"];
+                    newDR["Price"] = drItems["Price"];
+                    newDR["Amount"] = drItems["Amount"];
+                    this._DetailForm.MainDataSet.Tables["D_StorageOutDetail"].Rows.Add(newDR);
+                }
+
+            }
+        }
 
 
 
@@ -129,8 +207,8 @@ namespace YUANYE
             UltraGridRow row = _BrowserForm.grid.Selected.Rows[0];
             StorageOutDocID = (Guid)row.Cells["ID"].Value;
             DS = GetData(StorageOutDocID);
-            FrmPrintViewer PV = new FrmPrintViewer("提货单", AppDomain.CurrentDomain.BaseDirectory + "PrintTemplate\\PrintStorageOut.rdlc", DS);
-            PV.Text = "提货单";
+            FrmPrintViewer PV = new FrmPrintViewer("采购发票", AppDomain.CurrentDomain.BaseDirectory + "PrintTemplate\\PrintStorageOut.rdlc", DS);
+            PV.Text = "采购发票";
             PV.MdiParent = _mdiForm;
             PV.Show();
         }
@@ -151,45 +229,10 @@ namespace YUANYE
 
         void _CreateGrid_BeforeSelectForm(object sender, BeforeSelectFormEventArgs e)
         {
-            //string[] s = e.Field.ValueType.Split(':');
-            //CCreateGrid CreatedGrid = (CCreateGrid)sender;
-            //UltraGridRow ActiveRow = CreatedGrid.Grid.ActiveCell.Row;
-            //Guid MaterialID = Guid.NewGuid();
-
-            //switch (s[1])
-            //{
-            //    case "P_Batch":
-            //        if (ActiveRow != null)
-            //        {
-            //            if (ActiveRow.Cells["Material"].Value.ToString().Length > 0)
-            //            {
-            //                MaterialID = (Guid)ActiveRow.Cells["Material"].Value;
-            //                e.Where = string.Format("P_Batch.Material = '{0}'", MaterialID);
-            //            }
-            //        }
-            //        break;
-            //    default:
-            //        break;
-            //}
-
         }
 
         void _CreateGrid_AfterSelectForm(object sender, AfterSelectFormEventArgs e)
         {
-            //CCreateGrid createGrid = (CCreateGrid)sender;
-            //switch (e.Field.FieldName)
-            //{
-            //    case "MaterialName":
-            //    case "MaterialCode":
-            //         createGrid.Grid.ActiveRow.Cells["Measure"].Value = createGrid.Grid.ActiveRow.Cells["MUNIT"].Value;
-            //         createGrid.Grid.ActiveRow.Cells["MeasureName"].Value = createGrid.Grid.ActiveRow.Cells["MUNITName"].Value;
-            //         break;
-            //    default:
-            //         break;
-            
-            //}
-
-
         }
 
 
@@ -212,25 +255,19 @@ namespace YUANYE
                     break;
 
                 case "Quantity":
-
-                    if ((e.Cell.Row.Cells["Price"].Value != DBNull.Value) && (e.Cell.Value != DBNull.Value))
-                    {
-                        Price = (decimal)e.Cell.Row.Cells["Price"].Value;
-                        e.Cell.Row.Cells["Amount"].Value = Math.Round(Price * (decimal)e.Cell.Value, 2);
-                    }
                     break;
 
-                //case "Amount":
-                //    UltraGrid grid2 = (UltraGrid)sender;
+                case "Amount":
+                    UltraGrid grid2 = (UltraGrid)sender;
 
-                //    //如果需要在订单的表头级别记录下订单的总金额，则需要此功能来自动汇总计算.
-                //    decimal AmountTotal = 0;
-                //    foreach (UltraGridRow row in grid2.Rows)
-                //        if (row.Cells["Amount"].Value != DBNull.Value)
-                //            AmountTotal += (decimal)row.Cells["Amount"].Value;
-                //    _ControlMap["Amount"].Text = AmountTotal.ToString();
+                    //如果需要在订单的表头级别记录下订单的总金额，则需要此功能来自动汇总计算.
+                    decimal AmountTotal = 0;
+                    foreach (UltraGridRow row in grid2.Rows)
+                        if (row.Cells["Amount"].Value != DBNull.Value)
+                            AmountTotal += (decimal)row.Cells["Amount"].Value;
+                    _ControlMap["Amount"].Text = AmountTotal.ToString();
 
-                //    break;
+                    break;
             }
 
         }
@@ -248,93 +285,29 @@ namespace YUANYE
         }
 
 
-
-        //private void toolAddNewItem_Click(object sender, EventArgs e)
+        //public override string BeforeSaving(DataSet ds, System.Data.SqlClient.SqlConnection conn, System.Data.SqlClient.SqlTransaction sqlTran)
         //{
-        //    //选择采购订单
+            //try
+            //{
+            //    string returnmessage;
 
-        //    if (this._DetailForm.MainDataSet.Tables["D_StorageOut"].Rows[0]["Customer"] == DBNull.Value)
-        //    {
-        //        Msg.Information("请首先在出货通知单中选择客户名称后再进行此操作！");
-
-        //    }
-        //    else
-        //    {
-        //        Guid CustomerID = (Guid)this._DetailForm.MainDataSet.Tables["D_StorageOut"].Rows[0]["Customer"];
-        //        getSalesOrder(null, CustomerID);
-        //    }
-
-        //    //return this._DetailForm.MainDataSet;      
-        //}
-
-        //private void getSalesOrder(String SONumber, Guid CustomerID)
-        //{
-        //    string FilterCondition;
-
-
-        //    FilterCondition = string.Format("D_SalesOrder.CheckStatus=1 and D_SalesOrder.Shipped=0 and D_SalesOrder.Customer='{0}'", CustomerID);
-       
-           
-        //    frmBrowser frm = new frmBrowser(CSystem.Sys.Svr.LDI.GetFields("D_SalesOrder"), null,FilterCondition, enuShowStatus.None);
-
-        //    DataRow dr = frm.ShowSelect("Code", SONumber, null);
-
-        //    if (dr != null)
-        //    {
-
-        //        COMFields FieldsDetail = CSystem.Sys.Svr.LDI.GetFields("D_SalesOrderItem");
-
-        //        string SQLDetail = FieldsDetail.QuerySQLWithClause(" MainID = '" + dr["ID"] + "'");
-
-        //        DataSet dsShippingItems = CSystem.Sys.Svr.cntMain.Select(SQLDetail, "D_SalesOrderItem");
-
-        //        foreach (DataRow drItems in dsShippingItems.Tables["D_SalesOrderItem"].Rows)
-        //        {
-        //            DataRow newDR = this._DetailForm.MainDataSet.Tables["D_StorageOutDetail"].NewRow();
-        //            newDR["SalesOrder"] = dr["ID"];
-        //            newDR["SONumber"] = dr["Code"];
-        //            newDR["CPONumber"] = dr["CPONumber"];
-        //            newDR["Style"] = drItems["Style"];
-        //            newDR["Destination"] = drItems["Destination"];
-        //            newDR["Material"] = drItems["Material"];
-        //            newDR["MaterialName"] = drItems["MaterialName"];
-        //            newDR["MaterialCode"] = drItems["MaterialCode"];
-        //            newDR["EComposition"] = drItems["EComposition"];
-        //            newDR["Color"] = drItems["Colour"];
-        //            newDR["Measure"] = drItems["Measure"];
-        //            newDR["MeasureName"] = drItems["MeasureName"];
-        //            newDR["Quantity"] = drItems["Quantity"];
-        //            newDR["Price"] = drItems["Price"];
-        //            newDR["Amount"] = drItems["Amount"];
-        //            this._DetailForm.MainDataSet.Tables["D_StorageOutDetail"].Rows.Add(newDR);
-        //        }
-
-        //    }
-        //}
-
-        public override string BeforeSaving(DataSet ds, System.Data.SqlClient.SqlConnection conn, System.Data.SqlClient.SqlTransaction sqlTran)
-        {
-            try
-            {
-                string returnmessage;
-
-                returnmessage = "";
+            //    returnmessage = "";
  
-                //returnmessage = this.CheckQuantity();
+            //    //returnmessage = this.CheckQuantity();
  
-                decimal total = 0;
-                foreach (DataRow dr in this._DetailForm.MainDataSet.Tables["D_StorageOutFactory"].Rows)
-                    if (dr.RowState != DataRowState.Deleted)
-                        total += (decimal)dr["Amount"];
-                //_ControlMap["Amount"].Text = total.ToString();
+            //    decimal total = 0;
+            //    foreach (DataRow dr in this._DetailForm.MainDataSet.Tables["D_StorageOutFactory"].Rows)
+            //        if (dr.RowState != DataRowState.Deleted)
+            //            total += (decimal)dr["Amount"];
+            //    //_ControlMap["Amount"].Text = total.ToString();
                 
-                return returnmessage;
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
+            //    return returnmessage;
+            //}
+            //catch (Exception ex)
+            //{
+            //    return ex.Message;
+            //}
+        //}
 
         public override Form GetForm(CRightItem right, Form mdiForm)
         {
@@ -352,17 +325,16 @@ namespace YUANYE
                     DocumentOutType = (enuDocumentOut)int.Parse(s[0]);
                 else
                     return null;
-                this.MainTableName = "V_PurchaseInvoice";
+                this.MainTableName = "D_PurchaseInvoice";
 
                 SortedList<string, SortedList<string, object>> defaultValue = new SortedList<string, SortedList<string, object>>();
                 SortedList<string, object> Value = new SortedList<string, object>();
                 Value.Add("DocumentDate", CSystem.Sys.Svr.SystemTime.Date);
-                defaultValue.Add("V_PurchaseInvoice", Value);
+                defaultValue.Add("D_PurchaseInvoice", Value);
 
                 COMFields mainTableDefine = CSystem.Sys.Svr.LDI.GetFields(this.MainTableName).Clone();
                 List<COMFields> detailTableDefines = CSystem.Sys.Svr.Properties.DetailTableDefineListClone(this.MainTableName);
 
-                //Value.Add("StorageType", (int)StorageType);
                 this._MainCOMFields = mainTableDefine;
                 this._DetailCOMFields = detailTableDefines;
                 detailTableDefines[0]["Price"].Visible = COMField.Enum_Visible.VisibleInDetail;
@@ -374,11 +346,10 @@ namespace YUANYE
             }
             catch (Exception ex)
             {
-                Msg.Warning(string.Format("采购发票加载失败！%n {0}", ex.Message));
+                Msg.Warning(string.Format("供应商开票资料加载失败！%n {0}", ex.Message));
             }
             return null;
         }
-
         
     }
 }
