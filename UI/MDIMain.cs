@@ -494,6 +494,16 @@ namespace UI
         {
 
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStatus_Click(object sender, EventArgs e)
+        {
+
+        }
     
     }
   }

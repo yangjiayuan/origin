@@ -15,7 +15,7 @@ namespace YUANYE
     {
         private ToolStripButton toolPrint;
         private ToolStripButton toolPreview;
-        private ToolStripButton toolAddNewItem;
+        private ToolStripButton toolInvoice;
 
         private Form _mdiForm;
 
@@ -74,17 +74,17 @@ namespace YUANYE
             int i = toolStrip.Items.Count;
 
 
-            //i = i -3;
-            //toolAddNewItem = new ToolStripButton();
-            //toolAddNewItem.Font = new System.Drawing.Font("SimSun", 10.5F);
-            //toolAddNewItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            //toolAddNewItem.Name = "toolAddNewItem";
-            //toolAddNewItem.Size = new System.Drawing.Size(39, 34);
-            //toolAddNewItem.Text = "添加商品";
-            //toolAddNewItem.Image = UI.clsResources.Query;
-            //toolAddNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            //toolAddNewItem.Click += new EventHandler(toolAddNewItem_Click);
-            //toolStrip.Items.Insert(i, toolAddNewItem);
+            i = i - 3;
+            toolInvoice = new ToolStripButton();
+            toolInvoice.Font = new System.Drawing.Font("SimSun", 10.5F);
+            toolInvoice.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolInvoice.Name = "toolAddNewItem";
+            toolInvoice.Size = new System.Drawing.Size(39, 34);
+            toolInvoice.Text = "开票";
+            toolInvoice.Image = UI.clsResources.Query;
+            toolInvoice.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            toolInvoice.Click += new EventHandler(toolInvoice_Click);
+            toolStrip.Items.Insert(i, toolInvoice);
 
 
             i = i - 2;
@@ -207,33 +207,59 @@ namespace YUANYE
 
 
 
-        private void toolAddNewItem_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-
-        public override string BeforeSaving(DataSet ds, System.Data.SqlClient.SqlConnection conn, System.Data.SqlClient.SqlTransaction sqlTran)
+        private void toolInvoice_Click(object sender, EventArgs e)
         {
             try
             {
-                string returnmessage;
+                Guid StorageOutDocID;
 
-                returnmessage = "";
- 
-                decimal total = 0;
-                foreach (DataRow dr in this._DetailForm.MainDataSet.Tables["D_StorageOutFactory"].Rows)
-                    if (dr.RowState != DataRowState.Deleted)
-                        total += (decimal)dr["QuantityActual"];
-                _ControlMap["QuantityActual"].Text = total.ToString();
 
-                return returnmessage;
+                if (this._BrowserForm.grid.ActiveRow == null)
+                    return;
+
+                if (_BrowserForm.grid.Selected.Rows.Count == 0 && _BrowserForm.grid.ActiveRow != null)
+                    _BrowserForm.grid.ActiveRow.Selected = true;
+
+                UltraGridRow row = _BrowserForm.grid.Selected.Rows[0];
+                StorageOutDocID = (Guid)row.Cells["ID"].Value;
+
+                string SQL = string.Format("Insert Into D_PurchaseInvoice (StorageOutID,Code,DocumentDate,Customer,IssueDate,Vendor,QuantityActual,PaymentTerm,ShippingType,Bill,POL,POD,DEST,Notes,Priceterms) Select StorageOutID,Code,DocumentDate,Customer,IssueDate,Vendor,QuantityActual,PaymentTerm,ShippingType,Bill,POL,POD,DEST,Notes,Priceterms from V_StorageOutByVendor Where storageoutID= '{0}'", StorageOutDocID);
+                CSystem.Sys.Svr.cntMain.Excute(string.Format(SQL));
+
+                SQL = string.Format("Insert Into D_PurchaseInvoiceItem (ID,MainID,LineNumber,SalesOrder,Vendor ,Style ,Material ,Color ,Quantity ,Measure ,QuantityActual ,Price ,Amount) Select ID,MainID,LineNumber,SalesOrder,Vendor ,Style ,Material ,Color ,Quantity ,Measure ,QuantityActual ,Price ,Amount From D_StorageOutFactory Where MainID= '{0}'", StorageOutDocID);
+                CSystem.Sys.Svr.cntMain.Excute(string.Format(SQL));
+                
+                CSystem.Sys.Svr.cntMain.StoreProcedure("SP_D_PurchaseInvoiceItem","D_PurchaseInvoiceItem");
+                
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                Msg.Error(string.Format("生产供应商开票资料出错！具体的错误信息如下：%n {0}", ex.Message));
             }
         }
+
+
+        //public override string BeforeSaving(DataSet ds, System.Data.SqlClient.SqlConnection conn, System.Data.SqlClient.SqlTransaction sqlTran)
+        //{
+            //try
+            //{
+            //    string returnmessage;
+
+            //    returnmessage = "";
+ 
+            //    decimal total = 0;
+            //    foreach (DataRow dr in this._DetailForm.MainDataSet.Tables["D_StorageOutFactory"].Rows)
+            //        if (dr.RowState != DataRowState.Deleted)
+            //            total += (decimal)dr["QuantityActual"];
+            //    _ControlMap["QuantityActual"].Text = total.ToString();
+
+            //    return returnmessage;
+            //}
+            //catch (Exception ex)
+            //{
+            //    return ex.Message;
+            //}
+        //}
 
         public override void AfterSaved(DataSet ds, System.Data.SqlClient.SqlConnection conn, System.Data.SqlClient.SqlTransaction tran)
         {
@@ -281,59 +307,16 @@ namespace YUANYE
         }
 
 
-        public override bool Check(Guid ID, System.Data.SqlClient.SqlConnection conn, System.Data.SqlClient.SqlTransaction sqlTran, DataRow mainRow)
-        {
-
-            try
-            {
-                Boolean Result;
-
-                string SQL = string.Format("Insert Into D_PurchaseInvoice (StorageOutID,Code,DocumentDate,Customer,IssueDate,Vendor,QuantityActual,PaymentTerm,ShippingType,Bill,POL,POD,DEST,Notes,Priceterms) Select StorageOutID,Code,DocumentDate,Customer,IssueDate,Vendor,QuantityActual,PaymentTerm,ShippingType,Bill,POL,POD,DEST,Notes,Priceterms from V_StorageOutByVendor Where storageoutID= '{0}'", ID);
-                CSystem.Sys.Svr.cntMain.Excute(string.Format(SQL));
-                Result = true;
-
-                return Result;
-            }
-            catch (Exception ex)
-            {
-                Msg.Error(string.Format("实际装运单复核出错！具体的错误信息如下：%n {0}", ex.Message));
-                return false;
-            }
-
-        }
+        //public override bool Check(Guid ID, System.Data.SqlClient.SqlConnection conn, System.Data.SqlClient.SqlTransaction sqlTran, DataRow mainRow)
+        //{
+        //}
 
 
         //public override bool UnCheck(Guid ID, System.Data.SqlClient.SqlConnection conn, System.Data.SqlClient.SqlTransaction sqlTran, DataRow mainRow)
         //{
-        //    try
-        //    {
-        //        string SQL = string.Format("SELECT SUM(QuantityActual) as QtyActualSum FROM D_StorageOutFactory Where MainID='{0}'", ID);
-        //        DataSet dsStorageOutFactory = CSystem.Sys.Svr.cntMain.Select(SQL, "D_StorageOutFactory");
-
-        //        DataRow drActualSum = dsStorageOutFactory.Tables["D_StorageOutFactory"].Rows[0];
-        //        decimal QtyActualSum = (decimal) drActualSum["QtyActualSum"];
-
-        //        if (QtyActualSum == 0)
-        //        {
-        //            SQL = string.Format("Delete From D_StorageOutFactory Where MainID= '{0}'", ID);
-        //            CSystem.Sys.Svr.cntMain.Excute(string.Format(SQL));
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            Msg.Error(string.Format("此发货单已经实际装运，不允许进行反复核操作"));
-        //            return false;
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Msg.Error(string.Format("发货通知单反复核出错！具体的错误信息如下：\r\n {0}", ex.Message));
-        //        return false;
-        //    }
         //}
     
-    //
+    
     }
 }
 

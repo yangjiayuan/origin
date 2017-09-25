@@ -1552,7 +1552,10 @@ protected virtual bool Saving(SqlConnection conn,SqlTransaction tran)
                     //由于在BeforeSaving中可能会改变值，需要做End操作，否则可能有些值不能保存进去。
                     this.BindingContext[MainDataSet, _MainTableDefine.OrinalTableName].EndCurrentEdit();
 
-                    CSystem.Sys.Svr.cntMain.Update(_MainDataSet.Tables[_MainTableDefine.OrinalTableName], conn, sqlTran);
+                   
+                    if (_MainTableDefine.Property.TableType!= CTableProperty.enuTableType.View)
+                        CSystem.Sys.Svr.cntMain.Update(_MainDataSet.Tables[_MainTableDefine.OrinalTableName], conn, sqlTran);
+
                     if (!Saving(conn, sqlTran))
                     {
                         sqlTran.Rollback();

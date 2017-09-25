@@ -30,7 +30,13 @@ namespace UI
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIMain));
-            this.menuStripMain = new System.Windows.Forms.MenuStrip();
+            this.timerMain = new System.Windows.Forms.Timer(this.components);
+            this.tabbedMdiManager = new Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager(this.components);
+            this.toolStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStatusUser = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MainStatus = new System.Windows.Forms.StatusStrip();
+            this.toolStatusServer = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStatusClient = new System.Windows.Forms.ToolStripStatusLabel();
             this.SystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.P_User = new System.Windows.Forms.ToolStripMenuItem();
             this.P_Role = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,30 +48,74 @@ namespace UI
             this.toolStripPrintTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportBuilderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.timerMain = new System.Windows.Forms.Timer(this.components);
-            this.tabbedMdiManager = new Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager(this.components);
-            this.toolStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStatusUser = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MainStatus = new System.Windows.Forms.StatusStrip();
-            this.toolStatusServer = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStatusClient = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuStripMain.SuspendLayout();
+            this.menuStripMain = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedMdiManager)).BeginInit();
             this.MainStatus.SuspendLayout();
+            this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStripMain
+            // timerMain
             // 
-            this.menuStripMain.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SystemToolStripMenuItem,
-            this.HelpToolStripMenuItem});
-            this.menuStripMain.Location = new System.Drawing.Point(0, 0);
-            this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStripMain.Size = new System.Drawing.Size(1115, 24);
-            this.menuStripMain.TabIndex = 13;
-            this.menuStripMain.Text = "menuStripMain";
+            this.timerMain.Enabled = true;
+            this.timerMain.Interval = 60000;
+            this.timerMain.Tick += new System.EventHandler(this.timerMain_Tick);
+            // 
+            // tabbedMdiManager
+            // 
+            this.tabbedMdiManager.MdiParent = this;
+            this.tabbedMdiManager.TabSettings.AllowClose = Infragistics.Win.DefaultableBoolean.True;
+            this.tabbedMdiManager.TabSettings.AllowDrag = Infragistics.Win.UltraWinTabbedMdi.MdiTabDragStyle.WithinGroup;
+            this.tabbedMdiManager.TabSettings.DisplayFormIcon = Infragistics.Win.DefaultableBoolean.False;
+            this.tabbedMdiManager.TabSettings.HotTrack = Infragistics.Win.DefaultableBoolean.False;
+            this.tabbedMdiManager.TabSettings.TabCloseAction = Infragistics.Win.UltraWinTabbedMdi.MdiTabCloseAction.Close;
+            this.tabbedMdiManager.ViewStyle = Infragistics.Win.UltraWinTabbedMdi.ViewStyle.Office2007;
+            // 
+            // toolStatus
+            // 
+            this.toolStatus.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
+            this.toolStatus.Name = "toolStatus";
+            this.toolStatus.Size = new System.Drawing.Size(938, 19);
+            this.toolStatus.Spring = true;
+            this.toolStatus.Text = "就绪";
+            this.toolStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStatus.Click += new System.EventHandler(this.toolStatus_Click);
+            // 
+            // toolStatusUser
+            // 
+            this.toolStatusUser.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+            this.toolStatusUser.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedOuter;
+            this.toolStatusUser.Name = "toolStatusUser";
+            this.toolStatusUser.Size = new System.Drawing.Size(35, 19);
+            this.toolStatusUser.Text = "用户";
+            this.toolStatusUser.ToolTipText = "用户";
+            // 
+            // MainStatus
+            // 
+            this.MainStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStatus,
+            this.toolStatusServer,
+            this.toolStatusClient,
+            this.toolStatusUser});
+            this.MainStatus.Location = new System.Drawing.Point(0, 546);
+            this.MainStatus.Name = "MainStatus";
+            this.MainStatus.Size = new System.Drawing.Size(1115, 24);
+            this.MainStatus.TabIndex = 15;
+            this.MainStatus.Text = "statusStrip1";
+            this.MainStatus.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MainStatus_ItemClicked);
+            // 
+            // toolStatusServer
+            // 
+            this.toolStatusServer.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
+            this.toolStatusServer.Name = "toolStatusServer";
+            this.toolStatusServer.Size = new System.Drawing.Size(43, 19);
+            this.toolStatusServer.Text = "Server";
+            // 
+            // toolStatusClient
+            // 
+            this.toolStatusClient.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
+            this.toolStatusClient.Name = "toolStatusClient";
+            this.toolStatusClient.Size = new System.Drawing.Size(53, 19);
+            this.toolStatusClient.Text = "客户端: ";
             // 
             // SystemToolStripMenuItem
             // 
@@ -156,67 +206,18 @@ namespace UI
             this.toolStripMenuItem1.Text = "打印测试";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-            // timerMain
+            // menuStripMain
             // 
-            this.timerMain.Enabled = true;
-            this.timerMain.Interval = 60000;
-            this.timerMain.Tick += new System.EventHandler(this.timerMain_Tick);
-            // 
-            // tabbedMdiManager
-            // 
-            this.tabbedMdiManager.MdiParent = this;
-            this.tabbedMdiManager.TabSettings.AllowClose = Infragistics.Win.DefaultableBoolean.True;
-            this.tabbedMdiManager.TabSettings.AllowDrag = Infragistics.Win.UltraWinTabbedMdi.MdiTabDragStyle.WithinGroup;
-            this.tabbedMdiManager.TabSettings.DisplayFormIcon = Infragistics.Win.DefaultableBoolean.False;
-            this.tabbedMdiManager.TabSettings.HotTrack = Infragistics.Win.DefaultableBoolean.False;
-            this.tabbedMdiManager.TabSettings.TabCloseAction = Infragistics.Win.UltraWinTabbedMdi.MdiTabCloseAction.Close;
-            this.tabbedMdiManager.ViewStyle = Infragistics.Win.UltraWinTabbedMdi.ViewStyle.Office2007;
-            // 
-            // toolStatus
-            // 
-            this.toolStatus.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
-            this.toolStatus.Name = "toolStatus";
-            this.toolStatus.Size = new System.Drawing.Size(938, 19);
-            this.toolStatus.Spring = true;
-            this.toolStatus.Text = "就绪";
-            this.toolStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // toolStatusUser
-            // 
-            this.toolStatusUser.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
-            this.toolStatusUser.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedOuter;
-            this.toolStatusUser.Name = "toolStatusUser";
-            this.toolStatusUser.Size = new System.Drawing.Size(35, 19);
-            this.toolStatusUser.Text = "用户";
-            this.toolStatusUser.ToolTipText = "用户";
-            // 
-            // MainStatus
-            // 
-            this.MainStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStatus,
-            this.toolStatusServer,
-            this.toolStatusClient,
-            this.toolStatusUser});
-            this.MainStatus.Location = new System.Drawing.Point(0, 546);
-            this.MainStatus.Name = "MainStatus";
-            this.MainStatus.Size = new System.Drawing.Size(1115, 24);
-            this.MainStatus.TabIndex = 15;
-            this.MainStatus.Text = "statusStrip1";
-            this.MainStatus.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MainStatus_ItemClicked);
-            // 
-            // toolStatusServer
-            // 
-            this.toolStatusServer.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
-            this.toolStatusServer.Name = "toolStatusServer";
-            this.toolStatusServer.Size = new System.Drawing.Size(43, 19);
-            this.toolStatusServer.Text = "Server";
-            // 
-            // toolStatusClient
-            // 
-            this.toolStatusClient.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
-            this.toolStatusClient.Name = "toolStatusClient";
-            this.toolStatusClient.Size = new System.Drawing.Size(53, 19);
-            this.toolStatusClient.Text = "客户端: ";
+            this.menuStripMain.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SystemToolStripMenuItem,
+            this.HelpToolStripMenuItem});
+            this.menuStripMain.Location = new System.Drawing.Point(0, 0);
+            this.menuStripMain.Name = "menuStripMain";
+            this.menuStripMain.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStripMain.Size = new System.Drawing.Size(1115, 24);
+            this.menuStripMain.TabIndex = 13;
+            this.menuStripMain.Text = "menuStripMain";
             // 
             // MDIMain
             // 
@@ -236,11 +237,11 @@ namespace UI
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MDIMain_FormClosing);
             this.Load += new System.EventHandler(this.MDIMain_Load);
-            this.menuStripMain.ResumeLayout(false);
-            this.menuStripMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedMdiManager)).EndInit();
             this.MainStatus.ResumeLayout(false);
             this.MainStatus.PerformLayout();
+            this.menuStripMain.ResumeLayout(false);
+            this.menuStripMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,25 +249,25 @@ namespace UI
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStripMain;
-        private System.Windows.Forms.ToolStripMenuItem SystemToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem P_User;
-        private System.Windows.Forms.ToolStripMenuItem P_Role;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager tabbedMdiManager;
         private System.Windows.Forms.Timer timerMain;
-        private System.Windows.Forms.ToolStripMenuItem toolChangePWD;
-        private System.Windows.Forms.ToolStripMenuItem toolStripPrintTemplate;
         private System.Windows.Forms.StatusStrip MainStatus;
         private System.Windows.Forms.ToolStripStatusLabel toolStatus;
         private System.Windows.Forms.ToolStripStatusLabel toolStatusUser;
-        private System.Windows.Forms.ToolStripMenuItem ReportBuilderToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripStatusLabel toolStatusServer;
         private System.Windows.Forms.ToolStripStatusLabel toolStatusClient;
+        private System.Windows.Forms.MenuStrip menuStripMain;
+        private System.Windows.Forms.ToolStripMenuItem SystemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem P_User;
+        private System.Windows.Forms.ToolStripMenuItem P_Role;
+        private System.Windows.Forms.ToolStripMenuItem toolChangePWD;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripPrintTemplate;
+        private System.Windows.Forms.ToolStripMenuItem ReportBuilderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
 
     }
 }

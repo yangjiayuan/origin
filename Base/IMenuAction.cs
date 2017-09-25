@@ -8,4 +8,9 @@ namespace Base
     {
         System.Windows.Forms.Form GetForm(CRightItem right,System.Windows.Forms.Form mdiForm);
     }
+
+    public interface ITransaction
+    {
+        System.Windows.Forms.Form GetForm(string TransactionName,System.Windows.Forms.Form mdiForm);
+    }
 }

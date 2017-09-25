@@ -2774,6 +2774,11 @@ namespace UI
             }
         }
 
+        private void toolStripHistory_Click(object sender, EventArgs e)
+        {
+
+        }
+
     //end of Class
     }
 }

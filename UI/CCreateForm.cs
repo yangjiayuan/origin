@@ -1029,6 +1029,7 @@ namespace UI
                         else
                             fieldName = f.FieldName;
                         UltraGridColumn column = grid.DisplayLayout.Bands[0].Columns[fieldName];
+                        Console.WriteLine(fieldName);
                         column.Hidden = false;
                         column.Header.Caption = f.FieldTitle;
                         column.Header.VisiblePosition = i;

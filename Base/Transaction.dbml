@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="YUANYE" EntityNamespace="Base" ContextNamespace="Base" Class="TransactionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=27.115.11.118,33410;Initial Catalog=YUANYE;User ID=sa" SettingsObjectName="Base.Properties.Settings" SettingsPropertyName="YUANYEConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.S_Transaction" Member="S_Transactions">
+    <Type Name="S_Transaction">
+      <Column Name="ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsCustom" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Action" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Parameters" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NeedRightControl" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RightExpression" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

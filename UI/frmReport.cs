@@ -894,34 +894,6 @@ namespace UI
             if (this.grid.ActiveRow != null)
             {
                 DataSet ds;
-
-                //if ((_ShowStatus & enuShowStatus.ShowDetail) == enuShowStatus.ShowDetail)
-                //{
-                //    ds = GetMainDataSet((Guid)grid.ActiveRow.Cells["ID"].Value);
-                //}
-                //else
-                //{
-                //    if (_MainDataSet.Tables[0].Columns.Contains("ID"))
-                //    {
-                //        DataRow[] drs = _MainDataSet.Tables[0].Select("ID = '" + grid.ActiveRow.Cells["ID"].Value + "'");
-                //        ds = _MainDataSet.Clone();
-                //        ds.Tables[0].ImportRow(drs[0]);
-                //    }
-                //    else if (_MainDataSet.Tables[0].TableName.Equals("S_Table"))
-                //    {
-                //        DataRow[] drs = _MainDataSet.Tables[0].Select("TableName = '" + grid.ActiveRow.Cells["TableName"].Value + "'");
-                //        ds = _MainDataSet.Clone();
-                //        ds.Tables[0].ImportRow(drs[0]);
-                //    }
-                //    else
-                //    {
-                //        DataRow[] drs = _MainDataSet.Tables[0].Select("ID = '" + grid.ActiveRow.Cells["ID"].Value + "'");
-                //        ds = _MainDataSet.Clone();
-                //        ds.Tables[0].ImportRow(drs[0]);
-                //    }
-                //}
-
-
                 DataRow[] drs = _MainDataSet.Tables[0].Select("ID = '" + grid.ActiveRow.Cells["ID"].Value + "'");
                 ds = _MainDataSet.Clone();
                 ds.Tables[0].ImportRow(drs[0]);
@@ -930,15 +902,8 @@ namespace UI
                 if (frm != null)
                 {
                     if (this.MdiParent != null)
-                        frm.MdiParent = this.MdiParent;
-                    //frm.DefaultValue = _DefaultValue;
-                    //frm.CopyLastValue = _CopyLastValue;
+                    frm.MdiParent = this.MdiParent;
                     frm.toolDetailForm = _ToolDetailForm;
-                    //frm.SelectForm = _SelectForm;
-                    //frm.DetailFormHandler = _DetailFormHandler;
-                    //frm.Changed += new DataTableEventHandler(frm_Changed);
-                    //frm.PageDown += new DataTableEventHandler(frm_PageDown);
-                    //frm.PageUp += new DataTableEventHandler(frm_PageUp);
 
                     bool bShowData = frm.ShowData(_MainTableDefine, _DetailTableDefine, new DataSetEventArgs(ds, this.grid.ActiveRow.HasNextSibling(), this.grid.ActiveRow.HasPrevSibling()), false, this.MdiParent);
                     if (bShowData && this.MdiParent != null)
