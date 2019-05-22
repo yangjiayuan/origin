@@ -280,7 +280,7 @@ namespace YUANYE
                     return null;
 
                 this.MainTableName = "V_PLByIssue_Payment";
-                Filter = string.Format("V_PLByIssue_Payment.Paymenttype={0}", (int)PaymentType);
+                //Filter = string.Format("V_PLByIssue_Payment.Paymenttype={0}", (int)PaymentType);
 
                 SortedList<string, SortedList<string, object>> defaultValue = new SortedList<string, SortedList<string, object>>();
                 SortedList<string, object> Value = new SortedList<string, object>();
@@ -317,8 +317,8 @@ namespace YUANYE
                 this._MainCOMFields = mainTableDefine;
                 this._DetailCOMFields = detailTableDefines;
 
-                frmBrowser frm = (frmBrowser)base.GetForm(right, mdiForm, Filter);
-
+                //frmBrowser frm = (frmBrowser)base.GetForm(right, mdiForm, Filter);
+                frmBrowser frm = (frmBrowser)base.GetForm(right, mdiForm);
 
                 frm.DefaultValue = defaultValue;
                 return frm;

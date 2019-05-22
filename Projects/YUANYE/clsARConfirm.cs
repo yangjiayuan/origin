@@ -71,13 +71,14 @@ namespace YUANYE
                     case "V_AccountReceivable":
                         if (ActiveRow != null)
                         {
-                            e.Where = string.Format("V_AccountReceivable.Customer = '{0}' and V_AccountReceivable.Balance > 0 and DocumentStatus =0", Customer);
+                            e.Where = string.Format("(V_AccountReceivable.Customer = '{0}' or V_AccountReceivable.Customer in (Select Customer from P_CustomerDeliveryto Where MainID = '{0}')) and V_AccountReceivable.Balance > 0 and DocumentStatus =0", Customer);
                         }
                         break;
                     case "D_SalesOrder":
                         if (ActiveRow != null)
                         {
-                            e.Where = string.Format("D_SalesOrder.Customer = '{0}'", Customer);
+                            //e.Where = string.Format("D_SalesOrder.Customer = '{0}'", Customer);
+                            e.Where = string.Format("(D_SalesOrder.Customer = '{0}' or D_SalesOrder.Customer in (Select Customer from P_CustomerDeliveryto Where MainID = '{0}'))", Customer);
                         }
                         break;
                     default:
